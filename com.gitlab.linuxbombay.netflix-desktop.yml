@@ -1,0 +1,39 @@
+app-id: com.gitlab.linuxbombay.netflix-desktop
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '24.08'
+separate-locales: false
+command: netflix
+rename-desktop-file: netflix.desktop
+rename-icon: netflix
+finish-args:
+  - --device=dri
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=network
+  - --own-name=org.mpris.MediaPlayer2.chromium.*
+modules:
+  - name: netflix-desktop
+    buildsystem: simple
+    build-commands:
+      - mkdir /app/netflix-desktop
+      - tar xf netflix-desktop.tar.xz -C /app/netflix-desktop --strip-components=1
+      - install -Dm644 /app/netflix-desktop/Netflix.desktop /app/share/applications/netflix.desktop
+      - desktop-file-edit --set-key=Exec --set-value='/app/bin/netflix %U' /app/share/applications/netflix.desktop
+      - install -Dm644 /app/netflix-desktop/netflix.svg /app/share/icons/hicolor/scalable/apps/netflix.svg
+      - install -Dm644 -t /app/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - install -Dm755 netflix-desktop-entrypoint.sh /app/bin/netflix
+    sources:
+      - type: file
+        dest-filename: netflix-desktop.tar.xz
+        url: https://gitlab.com/linuxbombay/netflix-desktop/binaries/1.1.1-2/-/raw/main/Netflix-linux-x64.tar.xz
+        sha256: 67292135e4a39b3a08feb87cdd7f6a4439012e1e9a4cfe43901db407126c4d76
+      - type: file
+        path: com.gitlab.linuxbombay.netflix-desktop.metainfo.xml
+      - type: script
+        dest-filename: netflix-desktop-entrypoint.sh
+        commands:
+          - zypak-wrapper /app/netflix-desktop/netflix "$@"

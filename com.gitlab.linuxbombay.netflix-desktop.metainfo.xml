@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.gitlab.linuxbombay.netflix-desktop</id>
+  
+  <name>Netflix</name>
+  <summary>Unofficial Netflix desktop application</summary>
+  <url type="homepage">https://gitlab.com/linuxbombay/netflix-desktop</url>
+  <url type="vcs-browser">https://gitlab.com/linuxbombay/netflix-desktop/application</url>
+
+  <developer id="com.gitlab">
+	  <name>Linux Bombay</name>
+  </developer>
+  
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  
+  <description>
+    <p>
+      Unofficial Netflix desktop application developed by Linux Bombay.
+    </p>
+    <p>
+      This is an unofficial version.
+    </p>
+  </description>
+
+  <content_rating type="oars-1.1">
+	<content_attribute id="money-purchasing">intense</content_attribute>
+	<content_attribute id="money-advertising">intense</content_attribute>
+  </content_rating>
+  
+  <launchable type="desktop-id">com.gitlab.linuxbombay.netflix-desktop.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+	<image>https://raw.githubusercontent.com/N0tACyb0rg/flathub/new-pr/netflix-dark.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+	<release version="1.1.1-2" date="2025-08-03">
+		<url type="details">https://gitlab.com/linuxbombay/netflix-desktop/application/-/releases/1.1.1-2</url>
+		<description>
+			<p>Release Notes</p>
+			<ul>
+				<li>Updated Dependencies</li>
+			</ul>
+			<p>Initial Flatpak release.</p>
+		</description>
+	</release>
+   </releases>
+</component>
